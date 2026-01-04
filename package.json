@@ -4,7 +4,8 @@
   "description": "User-centric mobile banking web application for low-tech users",
   "main": "index.html",
   "scripts": {
-    "start": "python -m http.server 8000"
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000"
   },
   "keywords": [
     "banking",
