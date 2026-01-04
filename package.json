@@ -1,0 +1,22 @@
+{
+  "name": "smart-bank-app",
+  "version": "1.0.0",
+  "description": "User-centric mobile banking web application for low-tech users",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000"
+  },
+  "keywords": [
+    "banking",
+    "mobile",
+    "web-app",
+    "accessibility"
+  ],
+  "author": "Santosh Patil",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santoshpatil1si23is087-hue/smart-bank-app.git"
+  }
+}
+
