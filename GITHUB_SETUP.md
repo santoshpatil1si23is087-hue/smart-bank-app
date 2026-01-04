@@ -1,11 +1,21 @@
 # 🚀 Push to GitHub - Step by Step Guide
 
-## Step 1: Initialize Git Repository
+## Step 0: Configure Git (First Time Only)
 
-Run these commands in PowerShell (you're already in the project folder):
+If you haven't used git before, set your name and email:
 
 ```powershell
-git init
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+**Use your actual name and email** (this will be visible on GitHub commits)
+
+## Step 1: Initialize Git Repository
+
+✅ Git is already initialized! Now run:
+
+```powershell
 git add .
 git commit -m "Initial commit: Smart Bank mobile banking app"
 ```
