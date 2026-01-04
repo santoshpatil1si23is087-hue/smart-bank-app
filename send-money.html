@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Bank - Send Money</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="d-flex justify-content-between align-items-center p-3">
+                <div>
+                    <a href="dashboard.html" class="text-white text-decoration-none">
+                        <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>
+                    </a>
+                    <h2 class="d-inline mb-0" data-i18n="send-money">Send Money</h2>
+                </div>
+                <div>
+                    <button class="btn btn-outline-light btn-sm" id="langToggle" aria-label="Switch Language">
+                        <i class="fas fa-language" aria-hidden="true"></i>
+                        <span id="currentLang">English</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="send-money-content p-3">
+            <!-- Step Indicator -->
+            <div class="step-indicator mb-4">
+                <div class="step active" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-label" data-i18n="step-recipient">Recipient</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-label" data-i18n="step-amount">Amount</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-label" data-i18n="step-confirm">Confirm</div>
+                </div>
+            </div>
+            
+            <!-- Step 1: Recipient Details -->
+            <div class="step-content" id="stepContent1">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4" data-i18n="enter-recipient">Enter Recipient Details</h3>
+                        
+                        <div class="mb-4">
+                            <label for="recipientMobile" class="form-label" data-i18n="recipient-mobile">
+                                <i class="fas fa-mobile-alt me-2" aria-hidden="true"></i>
+                                Recipient Mobile Number
+                            </label>
+                            <input 
+                                type="tel" 
+                                class="form-control form-control-lg" 
+                                id="recipientMobile" 
+                                placeholder="Enter 10 digit number"
+                                maxlength="10"
+                                pattern="[0-9]{10}"
+                                required
+                                aria-required="true"
+                            >
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="recipientName" class="form-label" data-i18n="recipient-name">
+                                <i class="fas fa-user me-2" aria-hidden="true"></i>
+                                Recipient Name (Optional)
+                            </label>
+                            <input 
+                                type="text" 
+                                class="form-control form-control-lg" 
+                                id="recipientName" 
+                                placeholder="Enter name"
+                                aria-label="Recipient Name"
+                            >
+                        </div>
+                        
+                        <button class="btn btn-primary btn-lg w-100 action-btn" id="nextToAmount" data-i18n="next">
+                            <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2: Amount -->
+            <div class="step-content" id="stepContent2" style="display: none;">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4" data-i18n="enter-amount">Enter Amount</h3>
+                        
+                        <div class="mb-4">
+                            <label for="amount" class="form-label" data-i18n="amount">
+                                <i class="fas fa-rupee-sign me-2" aria-hidden="true"></i>
+                                Amount
+                            </label>
+                            <input 
+                                type="number" 
+                                class="form-control form-control-lg" 
+                                id="amount" 
+                                placeholder="0.00"
+                                min="1"
+                                step="0.01"
+                                required
+                                aria-required="true"
+                            >
+                        </div>
+                        
+                        <!-- Quick Amount Buttons -->
+                        <div class="quick-amounts mb-4">
+                            <p class="mb-2" data-i18n="quick-amount">Quick Amount:</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button class="btn btn-outline-primary quick-amount-btn" data-amount="100">₹100</button>
+                                <button class="btn btn-outline-primary quick-amount-btn" data-amount="500">₹500</button>
+                                <button class="btn btn-outline-primary quick-amount-btn" data-amount="1000">₹1000</button>
+                                <button class="btn btn-outline-primary quick-amount-btn" data-amount="5000">₹5000</button>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="remarks" class="form-label" data-i18n="remarks">
+                                <i class="fas fa-comment me-2" aria-hidden="true"></i>
+                                Remarks (Optional)
+                            </label>
+                            <input 
+                                type="text" 
+                                class="form-control form-control-lg" 
+                                id="remarks" 
+                                placeholder="e.g., Payment for services"
+                                aria-label="Remarks"
+                            >
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-secondary btn-lg flex-fill" id="backToRecipient" data-i18n="back">
+                                <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>
+                                Back
+                            </button>
+                            <button class="btn btn-primary btn-lg flex-fill action-btn" id="nextToConfirm" data-i18n="next">
+                                <i class="fas fa-arrow-right me-2" aria-hidden="true"></i>
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3: Confirmation -->
+            <div class="step-content" id="stepContent3" style="display: none;">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <h3 class="mb-4 text-center" data-i18n="confirm-transaction">Confirm Transaction</h3>
+                        
+                        <div class="confirmation-details">
+                            <div class="detail-row mb-3">
+                                <span class="detail-label" data-i18n="recipient">Recipient:</span>
+                                <span class="detail-value" id="confirmRecipient"></span>
+                            </div>
+                            <div class="detail-row mb-3">
+                                <span class="detail-label" data-i18n="mobile-number">Mobile:</span>
+                                <span class="detail-value" id="confirmMobile"></span>
+                            </div>
+                            <div class="detail-row mb-3">
+                                <span class="detail-label" data-i18n="amount">Amount:</span>
+                                <span class="detail-value amount-highlight" id="confirmAmount"></span>
+                            </div>
+                            <div class="detail-row mb-3">
+                                <span class="detail-label" data-i18n="remarks">Remarks:</span>
+                                <span class="detail-value" id="confirmRemarks">-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info mb-4" role="alert">
+                            <i class="fas fa-info-circle me-2" aria-hidden="true"></i>
+                            <span data-i18n="confirm-message">Please review the details before confirming.</span>
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-secondary btn-lg flex-fill" id="backToAmount" data-i18n="back">
+                                <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>
+                                Back
+                            </button>
+                            <button class="btn btn-success btn-lg flex-fill action-btn" id="confirmTransaction" data-i18n="confirm-send">
+                                <i class="fas fa-check-circle me-2" aria-hidden="true"></i>
+                                Confirm & Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Success Message -->
+            <div id="successMessage" class="alert alert-success mt-3" role="alert" style="display: none;">
+                <i class="fas fa-check-circle me-2" aria-hidden="true"></i>
+                <span data-i18n="transaction-success">Transaction successful!</span>
+            </div>
+            
+            <!-- Error Message -->
+            <div id="errorMessage" class="alert alert-danger mt-3" role="alert" style="display: none;"></div>
+        </main>
+    </div>
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/i18n.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/send-money.js"></script>
+</body>
+</html>
+

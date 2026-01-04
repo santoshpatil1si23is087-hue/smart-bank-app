@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Bank - Transactions</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="d-flex justify-content-between align-items-center p-3">
+                <div>
+                    <a href="dashboard.html" class="text-white text-decoration-none">
+                        <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>
+                    </a>
+                    <h2 class="d-inline mb-0" data-i18n="transaction-history">Transaction History</h2>
+                </div>
+                <div>
+                    <button class="btn btn-outline-light btn-sm" id="langToggle" aria-label="Switch Language">
+                        <i class="fas fa-language" aria-hidden="true"></i>
+                        <span id="currentLang">English</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="transactions-content p-3">
+            <!-- Filter Options -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <select class="form-select" id="filterType" aria-label="Filter by type">
+                                <option value="all" data-i18n="all-transactions">All</option>
+                                <option value="sent" data-i18n="sent">Sent</option>
+                                <option value="received" data-i18n="received">Received</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <select class="form-select" id="filterPeriod" aria-label="Filter by period">
+                                <option value="all" data-i18n="all-time">All Time</option>
+                                <option value="today" data-i18n="today">Today</option>
+                                <option value="week" data-i18n="this-week">This Week</option>
+                                <option value="month" data-i18n="this-month">This Month</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Transactions List -->
+            <div id="transactionsList" class="transactions-list">
+                <!-- Transactions will be loaded here -->
+            </div>
+            
+            <!-- Empty State -->
+            <div id="emptyState" class="text-center py-5" style="display: none;">
+                <i class="fas fa-inbox empty-icon mb-3" aria-hidden="true"></i>
+                <p class="text-muted" data-i18n="no-transactions">No transactions found</p>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/i18n.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/transactions.js"></script>
+</body>
+</html>
+
